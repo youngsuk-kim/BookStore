@@ -5,7 +5,7 @@ services:
     container_name: fastapi-mysql
     restart: always
     ports:
-      - "3306:3306"
+      - "3307:3307"
     environment:
       MYSQL_USER: fastapi
       MYSQL_PASSWORD: fastapi
