@@ -5,6 +5,10 @@ from logging.config import fileConfig
 from alembic import context
 from sqlalchemy import pool, create_engine
 
+from app.book.domain.entity.book import Book
+from app.book.domain.entity.rental import Rental
+from app.user.domain.entity.user import User
+
 parent_dir = os.path.abspath(os.path.join(os.getcwd(), ".."))
 sys.path.append(parent_dir)
 
