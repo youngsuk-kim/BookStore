@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field, ConfigDict
 from sqlalchemy import String
-from sqlalchemy.orm import Mapped, mapped_column, composite
+from sqlalchemy.orm import Mapped, mapped_column, composite, relationship
 
 from app.user.domain.vo.location import Location
 from core.db import Base
@@ -16,6 +16,8 @@ class User(Base, TimestampMixin):
     nickname: Mapped[str] = mapped_column(String(255), nullable=False, unique=True)
     is_admin: Mapped[bool] = mapped_column(default=False)
     location: Mapped[Location] = composite(mapped_column("lat"), mapped_column("lng"))
+
+    rentals = relationship('Rental', back_populates='user')
 
     @classmethod
     def create(

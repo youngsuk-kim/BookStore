@@ -17,11 +17,11 @@ class Rental(Base, TimestampMixin):
     description: str = Column(String(255), nullable=False)
     user_id: Mapped[int] = Column(
 		Integer,
-        ForeignKey(User.id, ondelete="SET NULL", onupdate="CASCADE")
+        ForeignKey("user.id", ondelete="SET NULL", onupdate="CASCADE")
     )
     book_id: Mapped[int] = Column(
 		Integer,
-        ForeignKey(Book.id, ondelete="SET NULL", onupdate="CASCADE")
+        ForeignKey("book.id", ondelete="SET NULL", onupdate="CASCADE")
     )
     user = relationship("User", back_populates="rentals")
     book = relationship("Book", back_populates="rentals")
