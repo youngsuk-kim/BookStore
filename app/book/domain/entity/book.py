@@ -1,3 +1,4 @@
+from sqlalchemy import String, Column
 from sqlalchemy.orm import Mapped, mapped_column
 
 from core.db import Base
@@ -11,5 +12,5 @@ class Book(Base, TimestampMixin):
 
     __tablename__ = "book"
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-
+    description: str = Column(String(255), nullable=False)
 
