@@ -30,6 +30,7 @@ async def test_create_book():
     )
 
     repository_mock.create.return_value = None
+    repository_mock.get_book_by_title_and_author.return_value = None
     book_service.repository = repository_mock
 
     # When
