@@ -3,7 +3,7 @@ from app.book.adapter.output.persistence.repository_adapter import BookRepositor
 from app.book.domain.command import CreateBookCommand
 from app.book.domain.entity.book import Book
 from app.book.domain.usecase.book import BookUseCase
-from core.db import session, Transactional
+from core.db import Transactional
 
 
 class BookService(BookUseCase):

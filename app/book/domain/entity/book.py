@@ -1,9 +1,8 @@
-from sqlalchemy import String, Column
+from sqlalchemy import String, Column, ForeignKey, Integer
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from core.db import Base
 from core.db.mixins import TimestampMixin
-
 
 class Book(Base, TimestampMixin):
     """

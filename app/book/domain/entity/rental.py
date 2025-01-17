@@ -1,8 +1,6 @@
 from sqlalchemy import String, Column, Integer, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from app.book.domain.entity.book import Book
-from app.user.domain.entity.user import User
 from core.db import Base
 from core.db.mixins import TimestampMixin
 
