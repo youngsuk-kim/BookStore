@@ -35,7 +35,7 @@ class EngineType(Enum):
 
 
 engines = {
-    EngineType.WRITER: create_async_engine(config.WRITER_DB_URL, pool_recycle=3600),
+    EngineType.WRITER: create_async_engine(config.WRITER_DB_URL, pool_recycle=3600, echo=True),
     EngineType.READER: create_async_engine(config.READER_DB_URL, pool_recycle=3600),
 }
 
@@ -61,7 +61,6 @@ session = async_scoped_session(
 
 class Base(DeclarativeBase):
     ...
-
 
 @asynccontextmanager
 async def session_factory() -> AsyncGenerator[AsyncSession, None]:

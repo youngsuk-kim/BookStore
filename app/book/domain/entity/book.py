@@ -12,6 +12,8 @@ class Book(Base, TimestampMixin):
 
     __tablename__ = "book"
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    title: str = Column(String(255), nullable=False)
+    author: str = Column(String(255), nullable=False)
     description: str = Column(String(255), nullable=False)
 
     rentals = relationship('Rental', back_populates='book')

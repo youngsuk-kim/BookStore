@@ -7,3 +7,4 @@ class Logging:
 
     async def _send_log(self):
         pass
+

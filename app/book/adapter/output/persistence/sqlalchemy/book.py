@@ -4,6 +4,6 @@ from core.db.session import session
 
 
 class BookSQLAlchemyRepo(BookRepo):
-    async def create(self, book: Book) -> Book:
-        return session.add(book)
+    async def create(self, *, book: Book) -> None:
+        session.add(book)
 
