@@ -6,6 +6,7 @@ celery_app = Celery(
     "worker",
     backend=config.CELERY_BACKEND_URL,
     broker=config.CELERY_BROKER_URL,
+    include=['celery_task.process']
 )
 
 celery_app.conf.task_routes = {"worker.celery_worker.test_celery": "test-queue"}

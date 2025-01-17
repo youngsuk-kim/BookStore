@@ -6,6 +6,7 @@ from app.book.adapter.input.api.v1.response import CreateBookResponseDTO
 from app.book.domain.command import CreateBookCommand
 from app.book.domain.usecase.book import BookUseCase
 from app.container import Container
+from celery_task.broker import create_notification
 
 book_router = APIRouter()
 
@@ -21,4 +22,5 @@ async def create_book(
 ):
     command = CreateBookCommand(**request.model_dump())
     await usecase.create_book(command=command)
+    create_notification("create book success")
     return {"title": request.title, "description": request.description}

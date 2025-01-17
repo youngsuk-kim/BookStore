@@ -1,4 +1,3 @@
-from abc import ABC, abstractmethod
 
 from app.book.adapter.output.persistence.repository_adapter import BookRepositoryAdapter
 from app.book.domain.command import CreateBookCommand
@@ -18,4 +17,5 @@ class BookService(BookUseCase):
             author=command.author,
             description=command.description,
         )
+
         await self.repository.create(book=book)
