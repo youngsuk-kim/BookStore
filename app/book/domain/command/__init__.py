@@ -6,3 +6,7 @@ class CreateBookCommand(BaseModel):
     author: str
     description: str
 
+class CreateRentalCommand(BaseModel):
+    book_id: int
+    user_id: int
+    description: str

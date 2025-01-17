@@ -24,3 +24,20 @@ class Rental(Base, TimestampMixin):
     user = relationship("User", back_populates="rentals")
     book = relationship("Book", back_populates="rentals")
 
+    @staticmethod
+    def create(user, book, description):
+        return Rental(
+            user_id=user.id,
+            book_id=book.id,
+            description=description,
+        )
+
+    @property
+    def rental_info(self) -> dict:
+        """대여 정보 요약"""
+        return {
+            "rental_id": self.id,
+            "description": self.description,
+            "user": self.user.name if self.user else None,
+            "book": self.book.title if self.book else None
+        }

@@ -3,7 +3,7 @@ from app.user.domain.vo.location import Location
 
 
 def make_user(
-    id: int | None = None,
+    id: int = 1,
     password: str = "password",
     email: str = "h@id.e",
     nickname: str = "hide",

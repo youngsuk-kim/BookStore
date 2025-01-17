@@ -21,7 +21,7 @@ class Container(DeclarativeContainer):
 
     book_repo = Singleton(BookSQLAlchemyRepo)
     book_repo_adapter = Factory(BookRepositoryAdapter, book_repo=book_repo)
-    book_service = Factory(BookService, repository=book_repo_adapter)
+    book_service = Factory(BookService, repository=book_repo_adapter, user_repository=user_repo_adapter)
     book_notification = Singleton(CreateNotification)
 
     jwt_service = Factory(JwtService)
