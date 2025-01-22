@@ -24,6 +24,7 @@ def upgrade():
     op.alter_column('rental', 'book_id',
                existing_type=mysql.INTEGER(),
                nullable=True)
+    op.add_column('rental', sa.Column('rental_status', sa.Enum('REQUESTED', 'PENDING_APPROVAL', 'APPROVED', 'REJECTED', 'OVERDUE', 'RETURN_REQUESTED', 'RETURN_IN_PROGRESS', 'RETURNED', 'LOST', 'DAMAGED', name='rentalstatus'), nullable=False))
     op.create_foreign_key(None, 'rental', 'user', ['user_id'], ['id'], onupdate='CASCADE', ondelete='SET NULL')
     op.create_foreign_key(None, 'rental', 'book', ['book_id'], ['id'], onupdate='CASCADE', ondelete='SET NULL')
     # ### end Alembic commands ###

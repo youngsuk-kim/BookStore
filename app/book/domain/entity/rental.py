@@ -1,9 +1,11 @@
-from sqlalchemy import String, Column, Integer, ForeignKey
+from enum import Enum
+
+from sqlalchemy import String, Column, Integer, ForeignKey, Enum
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
+from app.book.domain.enum.rental import RentalStatus
 from core.db import Base
 from core.db.mixins import TimestampMixin
-
 
 class Rental(Base, TimestampMixin):
     """
@@ -21,6 +23,8 @@ class Rental(Base, TimestampMixin):
 		Integer,
         ForeignKey("book.id", ondelete="SET NULL", onupdate="CASCADE")
     )
+    rental_status = Column(Enum(RentalStatus), nullable=False)
+
     user = relationship("User", back_populates="rentals")
     book = relationship("Book", back_populates="rentals")
 
@@ -30,6 +34,7 @@ class Rental(Base, TimestampMixin):
             user_id=user.id,
             book_id=book.id,
             description=description,
+            rental_status=RentalStatus.REQUESTED
         )
 
     @property
@@ -38,6 +43,7 @@ class Rental(Base, TimestampMixin):
         return {
             "rental_id": self.id,
             "description": self.description,
+            "rental_status": self.rental_status.value,
             "user": self.user.name if self.user else None,
             "book": self.book.title if self.book else None
         }
